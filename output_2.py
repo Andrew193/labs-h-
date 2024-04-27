@@ -1,27 +1,21 @@
-class PhoneNumber:
-    def __init__(self, phone, phone_code):
-        self.phone = phone
-        self.phone_code = phone_code
+class DataAnalyzer:
+  def __init__(self, data):
+    self.data = data
 
-    def get_full_number(self):
-        return self.phone_code + self.phone
+  def _calculate_statistics(self):
+    total = sum(self.data)
+    count = len(self.data)
+    return total, count
 
-class User:
-    type_engineer = 1
-    type_manager = 2
+  def calculate_total(self):
+    return self._calculate_statistics()[0]
 
-    def __init__(self, name, age, type, phone_number):
-        self.name = name
-        self.age = age
-        self.type = type
-        self.phone_number = phone_number
+  def calculate_average(self):
+    total, count = self._calculate_statistics()
+    return total / count if count != 0 else 0
 
-    def print_details(self):
-        print("Name:", self.name)
-        print("Age:", self.age)
-        print("Type:", self.type)
-        print("Phone:", self.phone_number.get_full_number())
+  def calculate_minimum(self):
+    return min(self.data) if self.data else None
 
-# Приклад використання класу
-user = User("John", 25, User.type_engineer, PhoneNumber("9379992", "050"))
-user.print_details()
+  def calculate_maximum(self):
+    return max(self.data) if self.data else None
